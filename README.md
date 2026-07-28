@@ -5,7 +5,7 @@ A modern, responsive personal portfolio website showcasing my projects, skills, 
 ## 🌐 Live Demo
 
 You can view the live deployment of this portfolio here:
-👉 **[Live Website URL - Edit This Later](https://your-netlify-url-here.netlify.app)**
+👉 **[Live Website URL](https://nehamalikportfolio.netlify.app/)**
 
 ## 🚀 Features
 
