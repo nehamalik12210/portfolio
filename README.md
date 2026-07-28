@@ -48,4 +48,4 @@ To run this project on your local machine:
 ## 📫 Contact & Links
 
 - **Email**: malikneha@gmail.com
-- **LinkedIn**: [Neha Malik](https://www.linkedin.com/in/neha-malik)
+- **LinkedIn**: [Neha Malik](https://www.linkedin.com/in/neha-malik-5918a2258/)
