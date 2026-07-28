@@ -72,7 +72,7 @@ export default function ContactPage() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/neha-malik"
+              href="https://www.linkedin.com/in/neha-malik-5918a2258/"
               target="_blank"
               rel="noopener noreferrer"
               className={contactPageStyles.contactCard}
