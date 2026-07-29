@@ -41,29 +41,33 @@ export default function HomePage() {
             />
           </div>
 
-          {/* Callout Card */}
-          <div className="max-w-[450px]">
-            <div className={homePageStyles.calloutCard.wrapper}>
-              <div className={homePageStyles.calloutCard.innerContainer}>
-                <div className={homePageStyles.calloutCard.textContainer}>
-                  <svg
-                    className={homePageStyles.calloutCard.icon}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden
-                  >
-                    <path d="M3 12l9-9 9 9" strokeWidth="1.2" />
-                  </svg>
-                  <span className={homePageStyles.calloutCard.text}>
-                    Integrated M.Sc. Chemistry @ NIT Rourkela
-                  </span>
-                </div>
-                <Link href="/projects" className={homePageStyles.calloutCard.button}>
-                  View Projects
-                </Link>
-              </div>
-            </div>
+          {/* Brief Intro */}
+          <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-[500px]">
+            A developer passionate about building intelligent systems with AI/ML
+            and crafting modern web experiences.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4 mt-8">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-semibold text-sm transition-all duration-300 hover:bg-zinc-200 hover:scale-105"
+            >
+              View My Work
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 font-semibold text-sm transition-all duration-300 hover:border-zinc-500 hover:text-white hover:scale-105"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download Resume
+            </a>
           </div>
         </div>
 
