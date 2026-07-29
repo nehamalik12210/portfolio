@@ -1,21 +1,63 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { contactPageStyles } from "@/lib/dummyStyles";
 
 export default function ContactPage() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    user_email: "",
     subject: "",
     message: "",
   });
   const [focused, setFocused] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      setStatus("success");
+      setStatusMessage("Message sent successfully!");
+      setFormData({ name: "", user_email: "", subject: "", message: "" });
+
+      // Auto-dismiss success message after 5 seconds
+      setTimeout(() => {
+        setStatus("idle");
+        setStatusMessage("");
+      }, 5000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setStatus("error");
+      setStatusMessage("Failed to send message. Please try again or email me directly.");
+
+      // Auto-dismiss error message after 5 seconds
+      setTimeout(() => {
+        setStatus("idle");
+        setStatusMessage("");
+      }, 5000);
+    }
   };
 
   const getLabelClass = (field: string) => {
@@ -33,6 +75,36 @@ export default function ContactPage() {
       <div className={contactPageStyles.contentContainer}>
         <div className={contactPageStyles.formOuterContainer}>
           <div className={contactPageStyles.backgroundOverlay} />
+
+          {/* Status Toast Notification */}
+          {status !== "idle" && status !== "sending" && (
+            <div
+              style={{
+                position: "fixed",
+                top: "2rem",
+                right: "2rem",
+                zIndex: 100,
+                padding: "1rem 1.5rem",
+                borderRadius: "12px",
+                backdropFilter: "blur(12px)",
+                border: "1px solid",
+                borderColor: status === "success" ? "rgba(52, 211, 153, 0.3)" : "rgba(248, 113, 113, 0.3)",
+                background: status === "success"
+                  ? "linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 95, 70, 0.15))"
+                  : "linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(153, 27, 27, 0.15))",
+                color: status === "success" ? "#6ee7b7" : "#fca5a5",
+                fontSize: "0.9rem",
+                fontWeight: 500,
+                maxWidth: "400px",
+                animation: "slideInRight 0.4s ease-out",
+                boxShadow: status === "success"
+                  ? "0 4px 20px rgba(16, 185, 129, 0.2)"
+                  : "0 4px 20px rgba(239, 68, 68, 0.2)",
+              }}
+            >
+              {statusMessage}
+            </div>
+          )}
 
           {/* Header */}
           <div className={contactPageStyles.headerContainer}>
@@ -94,7 +166,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <form className={contactPageStyles.formContainer}>
+          <form ref={formRef} onSubmit={handleSubmit} className={contactPageStyles.formContainer}>
             <div className={contactPageStyles.formGrid}>
               {/* Name Field */}
               <div className={contactPageStyles.formFieldContainer}>
@@ -119,17 +191,17 @@ export default function ContactPage() {
               <div className={contactPageStyles.formFieldContainer}>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  id="user_email"
+                  name="user_email"
+                  value={formData.user_email}
                   onChange={handleChange}
-                  onFocus={() => setFocused("email")}
+                  onFocus={() => setFocused("user_email")}
                   onBlur={() => setFocused(null)}
                   className={contactPageStyles.formInput}
                   placeholder="your@email.com"
                   required
                 />
-                <label htmlFor="email" className={getLabelClass("email")}>
+                <label htmlFor="user_email" className={getLabelClass("user_email")}>
                   Email
                 </label>
               </div>
@@ -175,22 +247,62 @@ export default function ContactPage() {
 
             {/* Submit */}
             <div className={contactPageStyles.submitButtonContainer}>
-              <button type="submit" className={contactPageStyles.submitButton}>
+              <button
+                type="submit"
+                className={contactPageStyles.submitButton}
+                disabled={status === "sending"}
+                style={{
+                  opacity: status === "sending" ? 0.7 : 1,
+                  cursor: status === "sending" ? "not-allowed" : "pointer",
+                }}
+              >
                 <span className={contactPageStyles.submitButtonText}>
-                  Send Message
-                  <svg
-                    className={contactPageStyles.submitButtonIcon}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
-                    />
-                  </svg>
+                  {status === "sending" ? (
+                    <>
+                      <svg
+                        style={{
+                          animation: "spin 1s linear infinite",
+                          width: "1.25rem",
+                          height: "1.25rem",
+                          marginRight: "0.5rem",
+                        }}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          style={{ opacity: 0.25 }}
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          style={{ opacity: 0.75 }}
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        />
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <svg
+                        className={contactPageStyles.submitButtonIcon}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+                        />
+                      </svg>
+                    </>
+                  )}
                 </span>
               </button>
             </div>
