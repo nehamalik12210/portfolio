@@ -23,234 +23,520 @@ export interface Project {
   learningOutcomes: string[];
 }
 
-/**
- * Neha's projects — sourced from resume and GitHub profile.
- * Ensure slug values are URL-safe and unique.
- */
 export const projects: Project[] = [
+  /* =========================================================
+     1. CUSTOMER CHURN PREDICTION
+     ========================================================= */
   {
-    id: "1",
-    title: "Akshar : Hindi HTR & TTS",
-    slug: "hindi-htr-tts",
-    description: "Summer research internship project — OCR pipeline for Hindi handwritten text with Text-to-Speech synthesis",
+    id: "7",
+    title: "Customer Churn Prediction",
+    slug: "customer-churn-prediction",
+
+    description:
+      "Interpretable customer-churn modeling with tuned XGBoost, SHAP explainability, and retention-focused analysis.",
+
     detailedDescription:
-      "A summer research internship project (May – July 2026) focused on building an end-to-end pipeline for Hindi handwritten text recognition (HTR) combined with Text-to-Speech (TTS) synthesis. The system processes handwritten Hindi text images, applies deep learning-based OCR to extract Devanagari text, and then converts the recognized text into natural-sounding Hindi speech using TTS models.",
-    image: "/akshar.png",
-    tags: ["Deep Learning", "OCR", "TTS", "Research", "NLP"],
+      "An end-to-end customer churn prediction project built on the IBM Telco Customer Churn dataset. The workflow covers exploratory analysis, feature engineering, class-imbalance handling, comparison of multiple classification models, XGBoost hyperparameter tuning, cost-aware threshold analysis, and SHAP-based interpretation of churn drivers. The final tuned XGBoost model was evaluated on an untouched holdout set.",
+
+    image: "/Customer_Churn.png",
+
+    tags: [
+      "Data Science",
+      "XGBoost",
+      "SHAP",
+      "Classification",
+      "Customer Analytics",
+    ],
+
     status: "active",
-    techStack: ["Python", "TensorFlow", "Keras", "OpenCV", "NumPy", "Jupyter Notebook"],
+
+    techStack: [
+      "Python",
+      "Pandas",
+      "Scikit-learn",
+      "XGBoost",
+      "LightGBM",
+      "SHAP",
+      "Imbalanced-learn",
+      "Matplotlib",
+      "Seaborn",
+    ],
+
     features: [
-      "Handwritten Hindi text recognition using deep learning models",
-      "Devanagari script OCR with high accuracy",
-      "Text-to-Speech synthesis for recognized Hindi text",
-      "End-to-end pipeline from image input to speech output",
-      "Dataset preprocessing and augmentation for Hindi scripts",
-      "Research-grade implementation with detailed documentation",
+      "Exploratory analysis of customer churn patterns",
+      "Feature engineering for customer behavior and service usage",
+      "Comparison of Logistic Regression, Random Forest, XGBoost, LightGBM, and SMOTE-based modeling",
+      "RandomizedSearchCV-based XGBoost tuning",
+      "Class-imbalance handling with class weighting and SMOTE",
+      "SHAP global feature importance and individual explanations",
+      "Cost-aware decision-threshold analysis",
+      "High-risk customer profiling",
+      "Evaluation on a separate untouched holdout set",
     ],
+
     learningOutcomes: [
-      "Deep learning for optical character recognition",
-      "Hindi/Devanagari script processing techniques",
-      "TTS model integration and audio synthesis",
-      "Research methodology and paper documentation",
-      "Data preprocessing for handwritten text datasets",
-      "End-to-end ML pipeline development",
+      "End-to-end binary classification workflow",
+      "Handling imbalanced classification datasets",
+      "Hyperparameter optimization",
+      "Model comparison and evaluation",
+      "Explainable AI using SHAP",
+      "Business-oriented interpretation of ML predictions",
     ],
+
     links: {
-      github: "https://github.com/nehamalik12210/hindi-htr-tts",
+      github:
+        "https://github.com/nehamalik12210/customer-churn-prediction",
     },
+
     author: "Neha",
     authorAvatar: "/nm-logo.png",
   },
+
+  /* =========================================================
+     2. DEMAND FORECASTING
+     ========================================================= */
+  {
+    id: "8",
+    title: "Demand Forecasting",
+    slug: "demand-forecasting",
+
+    description:
+      "Store-level daily sales forecasting using leakage-safe time-series features and gradient-boosted models.",
+
+    detailedDescription:
+      "A time-series forecasting project based on the Rossmann Store Sales dataset. The pipeline combines lag features, rolling statistics, calendar effects, promotions, holidays, store metadata, and competition information while using a chronological holdout to prevent future-data leakage. XGBoost, LightGBM, SARIMA, and a naive weekly baseline were compared, followed by store-level error analysis and business interpretation of demand drivers.",
+
+    image: "/Demand_Forecasting.png",
+
+    tags: [
+      "Time Series",
+      "Forecasting",
+      "XGBoost",
+      "LightGBM",
+      "Business Analytics",
+    ],
+
+    status: "active",
+
+    techStack: [
+      "Python",
+      "Pandas",
+      "XGBoost",
+      "LightGBM",
+      "Statsmodels",
+      "Matplotlib",
+      "Seaborn",
+    ],
+
+    features: [
+      "Store-level daily sales forecasting",
+      "Leakage-safe lag features",
+      "7-day and 28-day rolling statistics",
+      "Calendar and seasonality features",
+      "Promotion and holiday features",
+      "XGBoost and LightGBM forecasting models",
+      "SARIMA benchmark",
+      "Chronological time-based holdout",
+      "Store-level forecasting error analysis",
+      "Business interpretation of promotion and demand patterns",
+    ],
+
+    learningOutcomes: [
+      "Time-series feature engineering",
+      "Leakage-safe forecasting design",
+      "Lag and rolling-window modeling",
+      "Chronological evaluation",
+      "Forecast error analysis",
+      "Business interpretation of forecasting results",
+    ],
+
+    links: {
+      github:
+        "https://github.com/nehamalik12210/demand-forecasting",
+    },
+
+    author: "Neha",
+    authorAvatar: "/nm-logo.png",
+  },
+
+  /* =========================================================
+     3. INTELLIRAG
+     ========================================================= */
+  {
+    id: "9",
+    title: "IntelliRAG",
+    slug: "intellirag",
+
+    description:
+      "Full-stack RAG knowledge-base system with hybrid retrieval, reranking, source citations, and streaming LLM responses.",
+
+    detailedDescription:
+      "A full-stack Retrieval-Augmented Generation platform for querying user-uploaded knowledge bases. IntelliRAG combines document ingestion and chunking with dense semantic retrieval, sparse retrieval, Reciprocal Rank Fusion, optional cross-encoder reranking, and LLM generation. The system also supports streaming responses, source citations, resumable ingestion, isolated knowledge bases, and multiple LLM providers.",
+
+    image: "/IntelliRAG.png",
+
+    tags: [
+      "RAG",
+      "LLM",
+      "FastAPI",
+      "Hybrid Search",
+      "Vector Database",
+    ],
+
+    status: "active",
+
+    techStack: [
+      "Python",
+      "FastAPI",
+      "React",
+      "Vite",
+      "Qdrant",
+      "SQLite",
+      "LangChain",
+      "SPLADE",
+    ],
+
+    features: [
+      "Multi-format document ingestion",
+      "Document chunking and indexing",
+      "Dense semantic retrieval",
+      "Sparse keyword retrieval",
+      "Reciprocal Rank Fusion",
+      "Optional cross-encoder reranking",
+      "Streaming responses through SSE",
+      "Source citation extraction",
+      "Resumable ingestion pipeline",
+      "Isolated knowledge bases",
+      "Qdrant vector storage",
+      "SQLite metadata and conversation storage",
+      "Multiple LLM provider support",
+    ],
+
+    learningOutcomes: [
+      "End-to-end RAG system architecture",
+      "Hybrid retrieval design",
+      "Vector database integration",
+      "Reranking techniques",
+      "Streaming AI application architecture",
+      "FastAPI backend design",
+      "React frontend integration",
+      "Multi-provider LLM routing",
+    ],
+
+    links: {
+      github:
+        "https://github.com/nehamalik12210/IntelliRAG",
+    },
+
+    author: "Neha",
+    authorAvatar: "/nm-logo.png",
+  },
+
+  /* =========================================================
+     4. RECODE
+     ========================================================= */
   {
     id: "6",
-    title: "ReCode : LeetCode Solution Extension",
+    title: "ReCode — AI Code Analyzer",
     slug: "recode-leetcode-extension",
-    description: "A browser extension that enhances the LeetCode experience with solution tracking, notes, and code organization",
+
+    description:
+      "AI-powered Chrome extension for code analysis, complexity insights, reviews, test generation, and smarter coding assistance.",
+
     detailedDescription:
-      "ReCode is a browser extension designed to enhance the LeetCode problem-solving experience. It provides features for tracking solutions, adding personal notes to problems, organizing code snippets, and reviewing past submissions. Built with JavaScript and browser extension APIs for seamless integration with the LeetCode platform.",
+      "ReCode is a Chrome extension that analyzes code directly from coding platforms or manual input. It combines Gemini-powered analysis with local logic to provide complexity analysis, code-quality feedback, alternative approaches, generated test cases, hints, and explanations through a ChatGPT-style interface. It supports platforms including LeetCode, GeeksforGeeks, CodeChef, and other pages containing visible code blocks.",
+
     image: "/recode-ext.png",
-    tags: ["Browser Extension", "JavaScript", "LeetCode", "Developer Tools"],
+
+    tags: [
+      "AI",
+      "Chrome Extension",
+      "JavaScript",
+      "Developer Tools",
+      "Code Analysis",
+    ],
+
     status: "active",
-    techStack: ["JavaScript", "HTML", "CSS", "Chrome Extension API"],
+
+    techStack: [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Chrome Extensions API",
+      "Gemini API",
+    ],
+
     features: [
-      "Solution tracking and organization",
-      "Personal notes for each problem",
-      "Code snippet management",
-      "Past submission review",
-      "Seamless LeetCode integration",
-      "Clean and intuitive interface",
+      "AI-powered code analysis",
+      "Time and space complexity analysis",
+      "Code-quality feedback",
+      "Alternative solution suggestions",
+      "Automated test-case generation",
+      "Smart hints and explanations",
+      "Manual code input",
+      "Automatic code extraction from supported websites",
+      "ChatGPT-style response interface",
+      "Typing animation for AI responses",
+      "Complexity graphs",
+      "Light and dark themes",
+      "Clipboard integration",
+      "Chrome side-panel integration",
     ],
+
     learningOutcomes: [
-      "Browser extension development",
-      "Chrome Extension API usage",
-      "JavaScript DOM manipulation",
-      "Local storage management",
-      "UI/UX design for extensions",
-      "Developer tooling",
+      "Chrome extension development",
+      "Manifest V3 architecture",
+      "Browser scripting and content extraction",
+      "AI API integration",
+      "Interactive extension UI design",
+      "Client-side state and storage",
+      "Developer-tool product design",
     ],
+
     links: {
-      github: "https://github.com/nehamalik12210/leetcode-solution-extension",
+      github:
+        "https://github.com/nehamalik12210/leetcode-solution-extension",
     },
+
     author: "Neha",
     authorAvatar: "/nm-logo.png",
   },
-  {
-    id: "2",
-    title: "PlantInsight : Plant Disease Detection",
-    slug: "plantinsight-disease-detection",
-    description: "AI-based plant disease detection system achieving 92% accuracy — built during Infosys Springboard Internship",
-    detailedDescription:
-      "Built during the Infosys Springboard Internship (December 2024 – February 2025), PlantInsight is an AI-powered plant disease detection system. It uses a CNN model built with TensorFlow/Keras to classify 35+ plant diseases from leaf images with 92% accuracy. The project includes a Flask-based web application for real-time crop disease detection and an interactive guide featuring 100+ diseases with symptoms, treatments, and images.",
-    image: "/plantinsight.png",
-    tags: ["AI", "Computer Vision", "CNN", "Flask", "Internship"],
-    status: "active",
-    techStack: ["Python", "TensorFlow", "Keras", "OpenCV", "Flask", "NumPy", "Pandas"],
-    features: [
-      "CNN model classifying 35+ plant diseases with 92% accuracy",
-      "Preprocessed and augmented 5,000+ images using OpenCV and NumPy",
-      "Flask-based web app with real-time crop disease detection",
-      "Interactive guide featuring 100+ diseases with symptoms and treatments",
-      "Image upload and instant disease prediction interface",
-      "Comprehensive disease database with treatment recommendations",
-    ],
-    learningOutcomes: [
-      "Convolutional Neural Network architecture design",
-      "Image preprocessing and data augmentation techniques",
-      "Transfer learning for computer vision tasks",
-      "Flask web application development",
-      "Model deployment and serving",
-      "Agricultural AI applications",
-    ],
-    links: {
-      github: "https://github.com/nehamalik12210/PlantInsight-Automated-Plant-Disease-Detection",
-    },
-    author: "Neha",
-    authorAvatar: "/nm-logo.png",
-  },
+
+  /* =========================================================
+     5. ML MASTERY
+     ========================================================= */
   {
     id: "3",
     title: "ML Mastery",
     slug: "ml-mastery",
-    description: "An interactive learning platform for Machine Learning, Deep Learning, Mathematics, and Python from first principles.",
+
+    description:
+      "Interactive learning platform for Machine Learning, Deep Learning, Mathematics, NLP, Computer Vision, and Python from first principles.",
+
     detailedDescription:
-      "ML Mastery is a comprehensive and interactive learning platform built for teaching machine learning, mathematics, deep learning, and Python from first principles. It includes beautiful visualizations, theoretical foundations, and practical examples across 15+ chapters covering neural networks, NLP, Computer Vision, and classic algorithms.",
+      "ML Mastery is an interactive educational website designed to teach machine learning from first principles. The platform organizes content across Python, Mathematics, Machine Learning, and Deep Learning, with visual explanations, interactive examples, and hands-on Python-oriented learning material.",
+
     image: "/ml-mastery.png",
-    tags: ["Machine Learning", "Deep Learning", "Mathematics", "Education", "Python"],
+
+    tags: [
+      "Machine Learning",
+      "Deep Learning",
+      "Mathematics",
+      "Education",
+      "Python",
+    ],
+
     status: "active",
-    techStack: ["HTML", "CSS", "JavaScript"],
+
+    techStack: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+
     features: [
-      "Interactive visualizations for math and ML algorithms",
-      "Comprehensive topics from linear algebra to neural networks",
-      "Responsive UI with modern design",
-      "15+ chapters with 80+ in-depth topics",
-      "Code examples for hands-on learning",
-      "Focus on first-principles understanding",
+      "Interactive learning interface",
+      "Mathematics foundations",
+      "Machine learning algorithms",
+      "Deep learning concepts",
+      "NLP topics",
+      "Computer vision topics",
+      "Python learning material",
+      "Visual explanations",
+      "Hands-on examples",
+      "15+ chapters and 80+ topics",
     ],
+
     learningOutcomes: [
-      "Platform architecture for educational websites",
-      "Complex UI development for tutorials",
-      "Responsive web design",
-      "Content structure for technical concepts",
-      "Interactive data visualization",
-      "Pedagogical approach to ML concepts",
+      "Educational website architecture",
+      "Interactive technical-content design",
+      "Responsive frontend development",
+      "Structuring complex ML concepts",
+      "Visual presentation of mathematical ideas",
+      "Designing learning-oriented user experiences",
     ],
+
     links: {
-      github: "https://github.com/nehamalik12210/Machine-Learning-Website",
+      github:
+        "https://github.com/nehamalik12210/Machine-Learning-Website",
       link: "https://ml-explained.netlify.app/",
     },
+
     author: "Neha",
     authorAvatar: "/nm-logo.png",
   },
+
+  /* =========================================================
+     6. LSTM STOCK PRICE FORECASTING
+     ========================================================= */
   {
     id: "4",
     title: "LSTM-Based Stock Price Forecasting",
     slug: "lstm-stock-forecasting",
-    description: "Deep learning stock predictor with Streamlit dashboard — RMSE 8.93, R² 0.97",
+
+    description:
+      "Streamlit-based stock trend forecasting application using an LSTM model and historical Yahoo Finance data.",
+
     detailedDescription:
-      "An LSTM-powered stock price forecasting system built with Python and TensorFlow (April – May 2025). It pre-processes 20 years of historical stock data (2004–24) using yFinance, Pandas, and NumPy for time-series forecasting. The LSTM model achieves an RMSE of 8.93 and R-square of 0.97 for daily stock price predictions. Features a Streamlit dashboard for local visualization of LSTM predictions vs. actual trends with interactive charts and model performance metrics.",
+      "A stock trend forecasting application built with TensorFlow/Keras and Streamlit. Users can enter a stock ticker and inspect historical closing prices, 100-day and 200-day moving averages, and LSTM predictions against actual prices. The application downloads historical market data with yfinance, scales the series, creates 100-day sequences, and evaluates predictions using MAE, MSE, RMSE, MAPE, and R².",
+
     image: "/lstm.png",
-    tags: ["Deep Learning", "LSTM", "Finance", "Time Series", "Streamlit"],
+
+    tags: [
+      "Deep Learning",
+      "LSTM",
+      "Finance",
+      "Time Series",
+      "Streamlit",
+    ],
+
     status: "active",
-    techStack: ["Python", "TensorFlow", "NumPy", "Pandas", "Scikit-learn", "Streamlit", "Matplotlib"],
+
+    techStack: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "NumPy",
+      "Pandas",
+      "Scikit-learn",
+      "Streamlit",
+      "yfinance",
+      "Matplotlib",
+    ],
+
     features: [
-      "LSTM model with RMSE 8.93 and R-square 0.97",
-      "20 years of historical stock data processing (2004–2024)",
-      "Time-series forecasting with deep learning",
-      "Streamlit dashboard with interactive charts",
-      "LSTM predictions vs. actual trends visualization",
-      "Model performance metrics and analysis tools",
+      "Interactive stock ticker input",
+      "Historical Yahoo Finance data retrieval",
+      "Closing-price visualization",
+      "100-day moving average",
+      "200-day moving average",
+      "LSTM-based sequence prediction",
+      "Predicted-versus-actual visualization",
+      "MAE, MSE, RMSE, MAPE, and R² evaluation",
+      "Streamlit interactive dashboard",
     ],
+
     learningOutcomes: [
-      "LSTM architecture for time-series data",
-      "Financial data preprocessing with yFinance",
-      "Time-series forecasting techniques",
-      "Model evaluation metrics (RMSE, R²)",
-      "Interactive data visualization with Streamlit",
-      "Deep learning model optimization",
+      "LSTM modeling for sequential data",
+      "Financial time-series preprocessing",
+      "Sequence-window construction",
+      "Feature scaling for neural networks",
+      "Regression model evaluation",
+      "Interactive ML application development",
     ],
+
     links: {
-      github: "https://github.com/nehamalik12210/LSTM-Based-Stock-Price-Forecasting",
+      github:
+        "https://github.com/nehamalik12210/LSTM-Based-Stock-Price-Forecasting",
     },
+
     author: "Neha",
     authorAvatar: "/nm-logo.png",
   },
+
+  /* =========================================================
+     7. WORKFLOW DECISION PLATFORM
+     ========================================================= */
   {
     id: "5",
-    title: "Workflow Platform",
+    title: "Workflow Decision Platform",
     slug: "workflow-platform",
-    description: "A full-stack workflow management platform with task tracking, team collaboration, and project dashboards",
+
+    description:
+      "Configurable pure-Python workflow decision engine with rules, risk scoring, idempotency, retries, audit trails, and a REST API.",
+
     detailedDescription:
-      "A comprehensive workflow management platform built with modern web technologies. Features include task creation and tracking, team collaboration tools, project dashboards with analytics, and role-based access control. Built with React, Node.js, and database integration for persistent data management.",
+      "A production-oriented workflow decision engine implemented in pure Python with zero external runtime dependencies. Structured requests pass through configurable JSON-defined workflows containing rule-evaluation, scoring, external-dependency, and decision stages. The platform supports idempotency, retry and exponential-backoff logic, SQLite-backed state and audit trails, simulated external services, hot-reloadable workflow configurations, and a REST API.",
+
     image: "/workflow-platform.png",
-    tags: ["Full Stack", "React", "Node.js", "Web Development"],
+
+    tags: [
+      "Python",
+      "Backend",
+      "Rules Engine",
+      "REST API",
+      "System Design",
+    ],
+
     status: "active",
-    techStack: ["React", "Node.js", "JavaScript", "CSS", "HTML"],
+
+    techStack: [
+      "Python",
+      "SQLite",
+      "JSON",
+      "HTTP",
+      "Pytest",
+    ],
+
     features: [
-      "Task creation, assignment, and tracking",
-      "Team collaboration with real-time updates",
-      "Project dashboards with progress analytics",
-      "Role-based access control",
-      "Responsive UI for desktop and mobile",
-      "Database integration for persistent storage",
+      "JSON-configurable workflows",
+      "Hot-reloadable workflow definitions",
+      "Safe expression-based rules engine",
+      "Weighted risk scoring",
+      "Auto-approve and auto-reject thresholds",
+      "SHA-256 idempotency keys",
+      "Retry and exponential backoff",
+      "Manual-review escalation",
+      "SQLite-backed audit trail",
+      "State and lifecycle management",
+      "Simulated credit, fraud, and compliance services",
+      "Pure-Python REST API",
+      "Comprehensive test suite",
     ],
+
     learningOutcomes: [
-      "Full-stack web application development",
-      "React component architecture",
-      "Node.js backend development",
-      "Database design and integration",
-      "User authentication and authorization",
-      "Responsive web design",
+      "Backend system architecture",
+      "Rules-engine design",
+      "Workflow orchestration",
+      "State and audit management",
+      "Idempotency and retry patterns",
+      "REST API implementation",
+      "Config-driven system design",
+      "Testing complex business logic",
     ],
+
     links: {
-      github: "https://github.com/nehamalik12210/Workflow-Platform",
+      github:
+        "https://github.com/nehamalik12210/Workflow-Platform",
     },
+
     author: "Neha",
     authorAvatar: "/nm-logo.png",
-  }
+  },
 ];
 
-/* -------------------------
-   Helper utilities
-   ------------------------- */
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
-/** Return a project by slug or null */
-export function getProjectBySlug(slug: string | undefined | null): Project | null {
-  // defensive normalization: decode URI components, coerce to string, trim
+/** Return a project by slug or null. */
+export function getProjectBySlug(
+  slug: string | undefined | null,
+): Project | null {
   const normalized = decodeURIComponent(String(slug ?? "")).trim();
-  if (!normalized) return null;
-  return projects.find((p) => p.slug === normalized) ?? null;
-}
-/** Return all slugs (useful for generateStaticParams or getStaticPaths) */
-export function getAllProjectSlugs(): string[] {
-  return projects.map((p) => p.slug);
+
+  if (!normalized) {
+    return null;
+  }
+
+  return (
+    projects.find((project) => project.slug === normalized) ?? null
+  );
 }
 
-/** Compose the canonical URL for a project (useful in UIs) */
-export function getProjectUrl(project: Project | { slug: string }) {
+/** Return all project slugs. */
+export function getAllProjectSlugs(): string[] {
+  return projects.map((project) => project.slug);
+}
+
+/** Compose the canonical project URL. */
+export function getProjectUrl(
+  project: Project | { slug: string },
+): string {
   return `/projects/${project.slug}`;
 }
 
-/** Return all projects (shallow copy) */
+/** Return all projects. */
 export function getAllProjects(): Project[] {
   return [...projects];
 }
